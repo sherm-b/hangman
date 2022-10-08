@@ -14,7 +14,7 @@ class Hangman
     end
 
     def valid_input?(char)
-        unless @used_letters_incorrect.contain?(char) && @template.contain?(" #{char} ") && char.length != 1
+        unless @used_letters_incorrect.include?(char) && @template.include?(" #{char} ") && char.length != 1
             return true
         end
     end
@@ -25,13 +25,13 @@ class Hangman
                 @template[index] = " #{char} "
             else
                 @man += 1
-                @used_letters_incorrect << user_input
+                @used_letters_incorrect << guess
             end
         end
     end
 
     def user_turn
-        puts "\n\nYou've made #{man}/5 mistakes! Be careful!\n\n"
+        puts "\n\nYou've made #{@man}/5 mistakes! Be careful!\n\n"
         puts @template
         puts "Mistakes: #{@used_letters_incorrect}\n\n"
         puts "Enter your letter!"
@@ -47,3 +47,4 @@ class Hangman
 end
 
 hangman = Hangman.new
+hangman.user_turn
