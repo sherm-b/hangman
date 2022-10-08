@@ -1,7 +1,7 @@
 
 class Hangman
     def initialize
-        puts 'HANGMAN\n\n'
+        puts "HANGMAN\n\n"
         @keyword = get_random_word
         @template = Array.new(@keyword.length, ' _ ')
         @used_letters_incorrect = Array.new
@@ -32,7 +32,7 @@ class Hangman
 
     def user_turn
         puts "\n\nYou've made #{@man}/5 mistakes! Be careful!\n\n"
-        puts @template
+        puts @template.join(' ')
         puts "Mistakes: #{@used_letters_incorrect}\n\n"
         puts "Enter your letter!"
         user_input = gets.chomp.upcase
