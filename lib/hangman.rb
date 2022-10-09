@@ -42,7 +42,7 @@ class Hangman
   end
 
   def user_turn
-    puts "\n\nYou've made #{@man}/5 mistakes! Be careful!\n\n"
+    puts "\n\nYou've made #{@man}/6 mistakes! Be careful!\n\n"
     puts @template.join
     puts "Mistakes: #{@used_letters_incorrect}\n\n"
     puts 'Enter your letter, or enter "save" to save and exit the game.'
@@ -58,7 +58,7 @@ class Hangman
   end
 
   def game_loop
-    user_turn until @man >= 5 || !@template.include?(' _ ')
+    user_turn until @man >= 6 || !@template.include?(' _ ')
     if @template.include?(' _ ')
       puts "You lose! The word was #{@keyword}! Better luck next time!"
     else
