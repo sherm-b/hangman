@@ -3,7 +3,7 @@ require 'json'
 class Hangman
   def initialize
     puts "HANGMAN\n\n"
-    @keyword = get_random_word
+    @keyword = random_word
     @template = Array.new(@keyword.length, ' _ ')
     @used_letters_incorrect = []
     @used_letters_correct = []
