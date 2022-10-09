@@ -1,3 +1,4 @@
+require 'json'
 
 class Hangman
     def initialize
@@ -40,7 +41,7 @@ class Hangman
 
     def user_turn
         puts "\n\nYou've made #{@man}/5 mistakes! Be careful!\n\n"
-        puts @template.join('')
+        puts @template.join
         puts "Mistakes: #{@used_letters_incorrect}\n\n"
         puts "Enter your letter!"
         user_input = gets.chomp.upcase
@@ -62,6 +63,27 @@ class Hangman
           puts @template.join
           puts 'You win! Good job!'
         end
+    end
+
+    def gamestate_to_json
+      JSON.dump ({
+        :keyword => @keyword,
+        :template => @template,
+        :used_letters_correct => @used_letters_correct,
+        :used_letters_incorrect => @used_letters_incorrect,
+        :man => @man
+      })
+    end
+    
+    def self.gamestate_from_json(filename)
+      gamestate = JSON.load filename
+      self.new(
+        gamestate['keyword'],
+        gamestate['template'],
+        gamestate['used_letters_correct'],
+        gamestate['used_letters_incorrect'],
+        gamestate['man']
+      )
     end
         
 end
